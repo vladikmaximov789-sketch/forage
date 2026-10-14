@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Выпадающее меню</title>
+
+  <style>
+    #menu,
+    #menu ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+
+    #menu {
+      width: 280px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+      background: #f1f1f1;
+    }
+
+    #menu li {
+      margin: 5px 0;
+    }
+
+    .parent {
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .parent:hover,
+    a:hover {
+      background: #ddd;
+    }
+    .submenu {
+      display: none;
+    }
+
+    .open > .submenu {
+      display: block;
+    }
+
+    a {
+      display: inline-block;
+      padding: 8px;
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Выпадающее меню</h1>
+
+  <ul id="menu">
+    <!-- Уровень 1 -->
+    <li class="parent">
+      Раздел 1
+
+      <ul class="submenu">
+        <!-- Уровень 2 -->
+        <li class="parent">
+          Подраздел 1.1
+
+          <ul class="submenu">
+            <li><a href="https://example.com">Перейти на Example</a></li>
+            <li><a href="https://www.wikipedia.org">Перейти в Википедию</a></li>
+          </ul>
+        </li>
+
+        <li class="parent">
+          Подраздел 1.2
+
+          <ul class="submenu">
+            <li><a href="https://example.com">Открыть страницу</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <li class="parent">
+      Раздел 2
+
+      <ul class="submenu">
+        <li class="parent">
+          Подраздел 2.1
+
+          <ul class="submenu">
+            <li><a href="https://www.wikipedia.org">Открыть Википедию</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    const menu = document.getElementById("menu");
+
+    menu.addEventListener("click", function(event) {
+      const parent = event.target.closest(".parent");
+
+      if (!parent || !menu.contains(parent)) {
+        return;
+      }
+
+      // Раскрываем или сворачиваем только пункт с подменю.
+      parent.classList.toggle("open");
+    });
+  </script>
+</body>
+</html>
